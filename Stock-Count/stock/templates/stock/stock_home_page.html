@@ -1,0 +1,43 @@
+﻿{% extends 'base.html' %}
+
+{% load static %}
+
+ 
+
+{% block content %}
+
+ <link href="{% static '/css/stock-app-style.css' %}"  type="text/css" rel="stylesheet"  >
+
+<h1>The stock Count Application</h1>
+
+
+<div class="d-flex justify-content-center">
+    <div>
+<table class="table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Product Name</th> <th>Quantity</th> <th>Modify</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        {% for food in object_list %}
+            <tr>
+                <td class="product-width">{{food.foodName}}</td> <td class="quantity-width">   {{food.quantity}}   </td> <td> <button  class="addButton">+</button>  <button class="substractButton">-</button> </td>
+            </tr>
+    
+        {% endfor %}
+
+    
+    </tbody>
+
+</table>
+</div>
+    </div>
+
+<script src="{% static '/script/stock_script.js' %}"></script>
+
+
+
+{% endblock %}
