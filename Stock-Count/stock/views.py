@@ -10,7 +10,6 @@ from .models import Stock, Transaction
 from .forms import StockForm
 
 
-
 def StockListView(request):
     
     obj = Stock.objects.order_by('dateTime')
@@ -73,11 +72,18 @@ class StockCreate(CreateView):
 
 def reporting(request):
 
-    transactions = Transaction.objects.all()
     
+    all_transactions = Transaction.objects.all()
+
+    # from the Stock table returns unique names 
+    unique_product_name = Stock.objects.all() #.values('foodName').distinct()
+
     context = {        
-        'transaction' : transactions,
+        'all_transactions' : all_transactions,
+        'product_name' : unique_product_name,
         }
     
 
     return render(request, 'stock/stock_report_page.html', context)
+
+

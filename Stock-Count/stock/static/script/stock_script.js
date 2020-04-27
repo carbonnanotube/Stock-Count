@@ -38,16 +38,3 @@ $(document).ready(function ()
     
     
 });
-
-
-/*class Transactions(models.Model):
-    foodName = models.CharField(max_length = 200)
-    quantity = models.IntegerField(blank=True, null=True)
-    timestamp = models.DateTimeField(blank=True, null=True, auto_now_add=True)
-
-
-    def __str__(self):
-        return self.foodName
- * 
- * 
- */

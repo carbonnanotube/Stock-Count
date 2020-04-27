@@ -6,13 +6,27 @@
 
 <h1>Transaction Records:</h1>
 
-{% for t in transaction %}
+<!--1. add into action url for views.py function to process the form submission, and display reporting data. 2. add date/time pickers form-to -->
+<form action="" method="POST"> {% csrf_token %}
 
-<p> {{t}} -- {{t.timestamp}} -- {{t.quantity}} </p>
+<label for="products">Select Product(s):</label>
+
+<select id="products" multiple class="browser-default custom-select">
+
+{% for t in product_name %}
+    
+    <option value="{{t.foodName}}">{{t.foodName}}</option>
+
 
 {% endfor %}
+ 
+</select>
 
+    
 
-
+    <div>
+         <input class="btn btn-primary" type="submit" value="Show Report" />
+    </div>
+</form>
 
 {% endblock %}
