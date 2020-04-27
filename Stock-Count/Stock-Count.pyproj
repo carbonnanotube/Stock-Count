@@ -34,6 +34,9 @@
     <Compile Include="manage.py" />
     <Compile Include="stock\admin.py" />
     <Compile Include="stock\apps.py" />
+    <Compile Include="stock\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="stock\migrations\__init__.py" />
     <Compile Include="stock\models.py" />
     <Compile Include="stock\tests.py" />
@@ -52,7 +55,11 @@
     <Content Include="static\css\base-style.css" />
     <Content Include="stock\static\css\stock-app-style.css" />
     <Content Include="stock\static\script\stock_script.js" />
+    <Content Include="stock\templates\stock\stock_create_page.html" />
     <Content Include="stock\templates\stock\stock_home_page.html" />
+    <Content Include="stock\templates\stock\stock_report_page.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="templates\base.html" />
   </ItemGroup>
   <ItemGroup>

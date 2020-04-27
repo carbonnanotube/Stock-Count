@@ -17,15 +17,23 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from stock.views import StockListView
+from stock.views import StockListView, update , StockCreate, reporting
+
+from stock import views
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 
 urlpatterns = [
-   
-   path('', StockListView.as_view(), name = 'stock_view' ),
+
+  path('', StockListView, name = 'stock_view' ),
+  path('update', update, name = 'update'),
+  path('create', StockCreate.as_view(), name = 'create'),
+  path('report', reporting, name = 'stock_report'),
+  
+  
+ 
 ]
 
 urlpatterns += staticfiles_urlpatterns()

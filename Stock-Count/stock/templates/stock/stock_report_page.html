@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h1>Transaction Records:</h1>
+
+{% for t in transaction %}
+
+<p> {{t}} -- {{t.timestamp}} -- {{t.quantity}} </p>
+
+{% endfor %}
+
+
+
+
+{% endblock %}
