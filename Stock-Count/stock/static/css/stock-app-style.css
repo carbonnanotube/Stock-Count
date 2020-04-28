@@ -13,7 +13,7 @@ th
     text-align: center;
 }
 
-.btn {
+.btn1 {
    
     
     text-decoration: none;
@@ -29,9 +29,7 @@ th
     
 }
 
-.submit {
-    background-color: lightsalmon;
-}
+
 
 input.placeholder {
     text-align: center;

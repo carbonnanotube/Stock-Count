@@ -17,7 +17,7 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from stock.views import StockListView, update , StockCreate, reporting
+from stock.views import StockListView, update , StockCreate, reporting, generate_report
 
 from stock import views
 
@@ -31,6 +31,7 @@ urlpatterns = [
   path('update', update, name = 'update'),
   path('create', StockCreate.as_view(), name = 'create'),
   path('report', reporting, name = 'stock_report'),
+  path('generate_report', generate_report, name='generate_report'),
   
   
  

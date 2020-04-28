@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.19.0/apexcharts.min.js" integrity="sha256-cre9IYMCEv8sI80be7MYT2DRSQqnGayjkSV8HhP3/tM=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.19.0/apexcharts.min.css" integrity="sha256-RUxywoyKDxPwo7mk/9S7TvbhR+IpVsldMi53nTNGpWQ=" crossorigin="anonymous" />
+
+
+
+<h1>Report Results:</h1> 
+
+<table class="table table-striped">
+	<thead class="thead-dark">
+		<tr>
+			<td>Product Name</td> <td>Quantity</td> <td>Date</td>
+		</tr>
+	</thead>
+	<tbody>
+	   {% for t in transaction_result %}
+			{% for trans in t %}
+			<tr>
+				<td>{{trans.stock}}</td>
+				<td>{{trans.quantity}}</td>
+				<td>{{trans.timestamp   }}</td> <!--|date:'d M y H:m' -->
+			</tr>
+
+			{% endfor %}
+		{% endfor %}
+	</tbody>
+
+</table>
+
+<div id="chart"></div>
+
+
+
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		var product_array = new Array();
+		var quantity_array = new Array();
+		var date_array = new Array();
+
+
+			  $('tr td:nth-child(1)').each(function () {
+
+				  product_array.push( $(this).html() );
+		   
+			  });
+
+			 $('tr td:nth-child(2)').each(function () {
+
+				 quantity_array.push( $(this).html() );
+		   
+			 });
+
+			 $('tr td:nth-child(3)').each(function () {
+
+				 date_array.push( $(this).html() );
+		   
+			 });
+		
+		product_array.shift();
+		quantity_array.shift();
+		date_array.shift();
+
+	// each array defined at the begining of the jquery function now has the list generated from the table
+
+
+	// apexcharts code starts here:
+
+
+		// series will contain the products, make data allign products
+	   // code works for one product, I need to add dynamic series to see any product and match it with date and quantity
+
+		var options = {
+			series: [{
+				name: product_array[0],
+				data: quantity_array
+			
+		}],
+		  chart: {
+		  type: 'bar',
+		  height: 350
+		},
+		plotOptions: {
+		  bar: {
+			horizontal: false,
+			columnWidth: '10%',
+			endingShape: 'rounded'
+		  },
+		},
+		dataLabels: {
+		  enabled: false
+		},
+		stroke: {
+		  show: true,
+		  width: 2,
+		  colors: ['transparent']
+		},
+		xaxis: {
+		  categories: date_array, // ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+		},
+		yaxis: {
+		  title: {
+			text: ''
+		  }
+		},
+		fill: {
+		  opacity: 1
+		},
+		tooltip: {
+		  y: {
+			formatter: function (val) {
+			  return val
+			}
+		  }
+		}
+		};
+
+		var chart = new ApexCharts(document.querySelector("#chart"), options);
+		chart.render();
+
+
+		
+
+
+
+
+	});
+
+
+</script>
+
+
+
+{% endblock %}
+

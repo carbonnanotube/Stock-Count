@@ -60,6 +60,9 @@
     <Content Include="stock\templates\stock\stock_report_page.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="stock\templates\stock\stock_report_result_page.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="templates\base.html" />
   </ItemGroup>
   <ItemGroup>

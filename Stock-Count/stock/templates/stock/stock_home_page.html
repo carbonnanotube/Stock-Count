@@ -8,18 +8,18 @@
         
           
         <div class="d-flex justify-content-between">
-        <div> <a class="btn" href="{% url 'create' %}"  >New Entry</a>    </div>   
+        <div> <a class=" btn btn-primary" href="{% url 'create' %}"  >New Entry</a>    </div>   
             
          <div class="">  <input class="placeholder" id="searchId" type="text"  name="search" value="" size="30" placeholder="search product"/>  </div>
             
 
-        <div  >  <input class="submit" type="submit" value="Update Quantity" /> </div>
+        <div  >  <input class="submit  btn btn-primary" type="submit" value="Update Quantity" /> </div>
         </div> 
 
         <h3  id="result_message" style="display:none">No results found</h3>
 
 <table class="table-striped table-bordered" >
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>Product Name </th>  <th>Current Quantity</th> <th>New Quantity</th>
         </tr> 

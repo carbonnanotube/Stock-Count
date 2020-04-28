@@ -2,16 +2,19 @@
 
 {% block content %}
 
+ 
+
+
 
 
 <h1>Transaction Records:</h1>
 
 <!--1. add into action url for views.py function to process the form submission, and display reporting data. 2. add date/time pickers form-to -->
-<form action="" method="POST"> {% csrf_token %}
+<form action="{% url 'generate_report' %}" method="POST"> {% csrf_token %}
 
-<label for="products">Select Product(s):</label>
+<label for="products">Select Product:</label>
 
-<select id="products" multiple class="browser-default custom-select">
+<select name="products" id="products" class="browser-default custom-select">
 
 {% for t in product_name %}
     
@@ -22,11 +25,35 @@
  
 </select>
 
-    
+    <div class="spacing"> 
+          <p>From Date: <input name="from_date"  class="form-control" type = "text" id = "datepicker-1"></p>
+
+          <p>To Date: <input name="to_date"  class="form-control" type = "text" id = "datepicker-2"></p>
+
+    </div>
+
 
     <div>
-         <input class="btn btn-primary" type="submit" value="Show Report" />
+         <input class=" form-control btn btn-primary" type="submit" value="Show Report" />
     </div>
 </form>
 
+<script>
+
+     $(function() {
+         $("#datepicker-1").datepicker({
+               appendText:"(dd-mm-yy)",
+               dateFormat:"dd-mm-yy",
+               
+            });
+
+         $( "#datepicker-2" ).datepicker({
+               appendText:"(dd-mm-yy)",
+               dateFormat:"dd-mm-yy",
+               
+            });
+         });
+</script>
+
 {% endblock %}
+

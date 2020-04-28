@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from django.http import request
 from django.http import HttpResponse
+from django.core.exceptions import ValidationError
+
 
 
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView, View
@@ -72,18 +74,51 @@ class StockCreate(CreateView):
 
 def reporting(request):
 
-    
-    all_transactions = Transaction.objects.all()
-
     # from the Stock table returns unique names 
     unique_product_name = Stock.objects.all() #.values('foodName').distinct()
 
+
     context = {        
-        'all_transactions' : all_transactions,
+        
         'product_name' : unique_product_name,
         }
     
-
     return render(request, 'stock/stock_report_page.html', context)
 
 
+
+
+
+def generate_report(request):
+
+
+    # add filter for dates, if they have been inserted
+    # also add validation 
+    if request.method == 'POST':
+
+        pk_list = list()
+        transaction_objects_list = list()
+
+        # use this product to get ID and search Transaction table
+        product_list_from_form = request.POST.getlist('products')
+        from_date = request.POST.get('from_date')
+        to_date = request.POST.get('to_date')
+
+        transaction_temp = Stock.objects.filter(foodName__in=product_list_from_form)
+
+        # adding id from Stock table into a pk_list
+        for t in transaction_temp:
+            pk_list.append(t.id)
+
+        
+        # loop throught pk_list and search Transaction data, and place result into a list which can be used in template
+        for id in pk_list:
+            transaction_objects_list.append(Transaction.objects.filter(stock = id)) 
+
+
+        context = {
+            
+            'transaction_result' : transaction_objects_list
+            }
+    
+    return render(request, 'stock/stock_report_result_page.html', context)
