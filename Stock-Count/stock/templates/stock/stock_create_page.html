@@ -3,7 +3,17 @@
 {% load static %}
 
 {% block content %}
+
+<style>
+    #margin {
+
+        margin-bottom: 1em;
+    }
+</style>
+
 <link href="{% static '/css/stock-app-style.css' %}"  type="text/css" rel="stylesheet"  >
+
+<h1 id="margin">Add New Product:</h1>
 
 <form method="POST"> {%csrf_token %}
     <table>

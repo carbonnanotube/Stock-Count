@@ -10,11 +10,11 @@
 <h1>Transaction Records:</h1>
 
 <!--1. add into action url for views.py function to process the form submission, and display reporting data. 2. add date/time pickers form-to -->
-<form action="{% url 'generate_report' %}" method="POST"> {% csrf_token %}
+<form id="report" action="{% url 'generate_report' %}" method="POST" onsubmit="return validateForm()" required> {% csrf_token %}
 
 <label for="products">Select Product:</label>
 
-<select name="products" id="products" class="browser-default custom-select">
+<select name="products" id="products" class="browser-default custom-select bg-light">
 
 {% for t in product_name %}
     
@@ -26,9 +26,9 @@
 </select>
 
     <div class="spacing"> 
-          <p>From Date: <input name="from_date"  class="form-control" type = "text" id = "datepicker-1"></p>
+          <p>From Date: <input name="from_date"  class="form-control bg-light" type = "text" id = "datepicker-1"></p>
 
-          <p>To Date: <input name="to_date"  class="form-control" type = "text" id = "datepicker-2"></p>
+          <p>To Date: <input name="to_date"  class="form-control bg-light" type = "text" id = "datepicker-2"></p>
 
     </div>
 
@@ -38,21 +38,40 @@
     </div>
 </form>
 
+
+
+
 <script>
 
      $(function() {
          $("#datepicker-1").datepicker({
-               appendText:"(dd-mm-yy)",
+               appendText:"dd-mm-yy",
                dateFormat:"dd-mm-yy",
                
             });
 
          $( "#datepicker-2" ).datepicker({
-               appendText:"(dd-mm-yy)",
+               appendText:"dd-mm-yy",
                dateFormat:"dd-mm-yy",
                
             });
-         });
+     });
+
+
+    $('#report').on('submit', function ()
+    {
+        var datepicker1 = $('#datepicker-1').val();
+        var datepicker2 = $('#datepicker-2').val();
+
+        if (datepicker1 == '' && datepicker2 == '' || datepicker1 == '' || datepicker2 == '')
+        {
+            alert(' ** works correctly, show the error under the form with highlited fields of input date to red and add text to explain what to do');
+            return false;
+        }
+            
+});
+ 
+
 </script>
 
 {% endblock %}

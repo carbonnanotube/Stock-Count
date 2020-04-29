@@ -1,5 +1,13 @@
 {% extends 'base.html'%}
 {% block content %}
+
+<style>
+    #margin 
+    {
+        margin-bottom: 1em;
+    }
+</style>
+
 <h1 class="text-center">The stock Count Application</h1>
 <div class="d-flex justify-content-center">
     <div>
@@ -8,8 +16,10 @@
         
           
         <div class="d-flex justify-content-between">
-        <div> <a class=" btn btn-primary" href="{% url 'create' %}"  >New Entry</a>    </div>   
+        <div id="margin"> <a class=" btn btn-primary" href="{% url 'create' %}"  >New Entry</a>    </div>   
             
+            
+
          <div class="">  <input class="placeholder" id="searchId" type="text"  name="search" value="" size="30" placeholder="search product"/>  </div>
             
 

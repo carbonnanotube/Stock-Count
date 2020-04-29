@@ -17,14 +17,14 @@
 	</thead>
 	<tbody>
 	   {% for t in transaction_result %}
-			{% for trans in t %}
+			<!--{ for trans in t %} add missin %-->
 			<tr>
-				<td>{{trans.stock}}</td>
-				<td>{{trans.quantity}}</td>
-				<td>{{trans.timestamp   }}</td> <!--|date:'d M y H:m' -->
+				<td>{{t.stock}}</td>
+				<td>{{t.quantity}}</td>
+				<td>{{t.timestamp   }}</td> <!--|date:'d M y H:m' -->
 			</tr>
 
-			{% endfor %}
+			<!-- { endfor %}  add missing % at the first {--> 
 		{% endfor %}
 	</tbody>
 
