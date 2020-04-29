@@ -19,6 +19,7 @@ def StockListView(request):
     
     obj = Stock.objects.order_by('dateTime')
     
+
     context = {
         
         'obj' : obj,
@@ -32,7 +33,6 @@ def StockListView(request):
   
 def update(request):
     context = None
-
 
     if request.method == 'POST':
         obj = request.POST
@@ -137,7 +137,9 @@ def generate_report(request):
                 for j in t:
                     if dt.strptime(str(j.timestamp)[0:19], '%Y-%m-%d %H:%M:%S') > from_date_comparison and dt.strptime(str(j.timestamp)[0:19], '%Y-%m-%d %H:%M:%S') <= to_date_comparison + timedelta(days=1):
                         date_transaction_list.append(j)    
-                   
+                    
+
+                        
 
         context = {
             

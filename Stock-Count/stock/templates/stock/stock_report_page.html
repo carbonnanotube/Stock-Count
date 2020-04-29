@@ -38,7 +38,7 @@
     </div>
 </form>
 
-
+<div id="warning_message"></div>
 
 
 <script>
@@ -65,7 +65,9 @@
 
         if (datepicker1 == '' && datepicker2 == '' || datepicker1 == '' || datepicker2 == '')
         {
-            alert(' ** works correctly, show the error under the form with highlited fields of input date to red and add text to explain what to do');
+            			$('#warning_message').html('Please select dates to compile report').addClass('alert alert-danger text-center');
+                        $('#datepicker-1').addClass('alert alert-danger ');
+                        $('#datepicker-2').addClass('alert alert-danger ');
             return false;
         }
             
